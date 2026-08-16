@@ -53,7 +53,7 @@ export default function LiveMap({ rides }) {
   const center =
     first && first.pickup_lat != null
       ? [first.pickup_lat, first.pickup_lng]
-      : [1.3521, 103.8198];
+      : [6.5244, 3.3792];
   const [layer, setLayer] = useState('streets');
   const tile = LAYERS[layer];
 
