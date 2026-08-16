@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { FaEnvelope, FaLock, FaSpinner } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
@@ -48,7 +47,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="uber-card">
           <h1 className="text-3xl font-extrabold mb-1">Welcome back</h1>
-          <p className="text-gray-500 mb-6">Log in to request a ride</p>
+          <p className="text-gray-500 mb-6">Log in to manage your fleet</p>
 
           {error && (
             <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
@@ -98,10 +97,7 @@ export default function LoginPage() {
           </form>
 
           <p className="mt-6 text-center text-sm text-gray-500">
-            New to chachapride?{' '}
-            <Link href="/signup" className="font-semibold text-black hover:underline">
-              Sign up
-            </Link>
+            Owner access only — accounts are provisioned by the administrator.
           </p>
         </div>
       </div>
