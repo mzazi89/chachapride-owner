@@ -17,6 +17,7 @@ export default function Header() {
     { href: '/', label: 'Dashboard' },
     { href: '/rides', label: 'Rides' },
     { href: '/drivers', label: 'Drivers' },
+    { href: '/ride-types', label: 'Ride types' },
   ];
 
   const isActive = (href) =>

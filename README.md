@@ -45,11 +45,11 @@ JWT_SECRET="<generate with: node -e "console.log(require('crypto').randomBytes(3
 
 > `.env.local` is gitignored — never commit real credentials.
 
-3. Create the tables and (optionally) seed demo data:
+3. Create the tables and provision the owner account (shared database):
 
 ```bash
 npm run db:setup
-npm run db:seed
+npm run db:owner   # uses OWNER_EMAIL / OWNER_PASSWORD from env
 ```
 
 4. Run:
@@ -60,13 +60,9 @@ npm run dev
 
 Open http://localhost:3000
 
-## Demo login (owner)
+## Owner login
 
-| Role  | Email                     | Password     |
-| ----- | ------------------------- | ------------ |
-| Owner | owner@chachapride.com     | password123  |
-
-Other demo accounts are created by `npm run db:seed` (check `scripts/seed.mjs`).
+This site is **login-only** — owner accounts are provisioned with `npm run db:owner` using the `OWNER_EMAIL` / `OWNER_PASSWORD` environment variables. The same credentials work on the driver site, where the owner gets an approved driver profile automatically.
 
 ## Owner API
 
