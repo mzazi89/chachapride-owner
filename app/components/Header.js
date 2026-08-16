@@ -17,6 +17,7 @@ export default function Header() {
     { href: '/', label: 'Dashboard' },
     { href: '/rides', label: 'Rides' },
     { href: '/drivers', label: 'Drivers' },
+    { href: '/settlements', label: 'Settlements' },
     { href: '/messages', label: 'Messages' },
     { href: '/ride-types', label: 'Ride types' },
   ];
