@@ -67,6 +67,7 @@ export default function DashboardPage() {
   const [stats, setStats] = useState(null);
   const [tracking, setTracking] = useState(null);
   const [recent, setRecent] = useState(null);
+  const [revenue, setRevenue] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -86,23 +87,26 @@ export default function DashboardPage() {
       fetch('/api/owner/stats'),
       fetch('/api/owner/tracking'),
       fetch('/api/owner/rides'),
+      fetch('/api/owner/revenue?days=7'),
     ])
-      .then(async ([statsRes, trackingRes, ridesRes]) => {
-        if (!statsRes.ok || !trackingRes.ok || !ridesRes.ok) {
+      .then(async ([statsRes, trackingRes, ridesRes, revenueRes]) => {
+        if (!statsRes.ok || !trackingRes.ok || !ridesRes.ok || !revenueRes.ok) {
           const msg =
             (await statsRes.json().catch(() => ({}))).error ||
             'Failed to load dashboard data.';
           throw new Error(msg);
         }
-        const [statsData, trackingData, ridesData] = await Promise.all([
+        const [statsData, trackingData, ridesData, revenueData] = await Promise.all([
           statsRes.json(),
           trackingRes.json(),
           ridesRes.json(),
+          revenueRes.json(),
         ]);
         if (cancelled) return;
         setStats(statsData.stats);
         setTracking(trackingData.rides || []);
         setRecent((ridesData.rides || []).slice(0, 5));
+        setRevenue(revenueData);
       })
       .catch((err) => {
         if (!cancelled) setError(err.message || 'Failed to load dashboard data.');
@@ -144,6 +148,48 @@ export default function DashboardPage() {
 
   const activeRides = tracking || [];
 
+  // Revenue bar chart (pure SVG, no chart library)
+  const renderRevenueChart = () => {
+    if (!revenue || revenue.series.length === 0) return null;
+    const max = Math.max(...revenue.series.map((s) => s.revenue), 1);
+    const barW = 44;
+    const gap = 14;
+    const height = 180;
+    return (
+      <div>
+        <svg
+          viewBox={`0 0 ${revenue.series.length * (barW + gap)} ${height + 34}`}
+          className="w-full"
+          style={{ maxHeight: 240 }}
+        >
+          {revenue.series.map((s, i) => {
+            const h = Math.max(3, (s.revenue / max) * height);
+            const x = i * (barW + gap);
+            const y = height - h;
+            return (
+              <g key={s.day}>
+                <rect x={x} y={y} width={barW} height={h} rx={6} className="fill-blue-600" />
+                {s.revenue > 0 && (
+                  <text x={x + barW / 2} y={y - 6} textAnchor="middle" fontSize="11" className="fill-gray-500 font-semibold">
+                    ${Math.round(s.revenue)}
+                  </text>
+                )}
+                <text x={x + barW / 2} y={height + 20} textAnchor="middle" fontSize="11" className="fill-gray-400">
+                  {s.label}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+        <p className="mt-2 text-sm text-gray-500">
+          Last 7 days ·{' '}
+          <span className="font-bold text-gray-800">{fmtMoney(revenue.total)}</span>{' '}
+          total revenue
+        </p>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -181,6 +227,16 @@ export default function DashboardPage() {
                 accent={c.accent}
               />
             ))}
+          </section>
+        )}
+
+        {revenue && revenue.series.length > 0 && (
+          <section className="uber-card p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <FaDollarSign className="text-emerald-600" />
+              <h2 className="text-lg font-bold text-gray-900">Revenue trend</h2>
+            </div>
+            {renderRevenueChart()}
           </section>
         )}
 
