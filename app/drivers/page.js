@@ -140,6 +140,15 @@ export default function DriversPage() {
         <FaIdCard className="text-gray-400 hidden sm:inline" />
         {driver.license_number}
       </td>
+      <td className="px-4 py-4 text-gray-600 whitespace-nowrap">
+        {driver.phone ? (
+          <a href={`tel:${driver.phone}`} className="hover:text-blue-600">
+            {driver.phone}
+          </a>
+        ) : (
+          <span className="text-gray-400">—</span>
+        )}
+      </td>
       <td className="px-4 py-4 whitespace-nowrap">
         <StatusPill status={driver.status} />
       </td>
@@ -241,6 +250,7 @@ export default function DriversPage() {
                         <p className="text-xs text-gray-500">
                           {d.vehicle_model} · {d.plate_number} ·{' '}
                           {d.license_number}
+                          {d.phone ? ` · ${d.phone}` : ''}
                         </p>
                       </div>
                       <button
@@ -277,6 +287,7 @@ export default function DriversPage() {
                         <th className="px-4 py-3 font-semibold">Driver</th>
                         <th className="px-4 py-3 font-semibold">Vehicle</th>
                         <th className="px-4 py-3 font-semibold">License</th>
+                        <th className="px-4 py-3 font-semibold">Phone</th>
                         <th className="px-4 py-3 font-semibold">Status</th>
                         <th className="px-4 py-3 font-semibold">Approval</th>
                         <th className="px-4 py-3 font-semibold">Rides</th>
