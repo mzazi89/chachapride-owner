@@ -1,12 +1,20 @@
 import './globals.css'
 import { RideProvider } from './context/RideContext'
 import { AuthProvider } from './context/AuthContext'
+import RegisterSW from './components/RegisterSW'
 
 export const metadata = {
-  title: 'chachapride - Go anywhere',
-  description: 'Request a ride, get affordable options instantly',
+  title: 'chachapride - Owner',
+  description: 'chachapride owner dashboard — drivers, rides, settlements and revenue.',
+  applicationName: 'chachapride Owner',
+  appleWebApp: {
+    capable: true,
+    title: 'chachapride Owner',
+    statusBarStyle: 'default',
+  },
   icons: {
     icon: '/favicon.ico',
+    apple: '/icons/icon-192.png',
   },
 }
 
@@ -20,6 +28,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="font-sans antialiased bg-gray-50">
+        <RegisterSW />
         <AuthProvider>
           <RideProvider>
             {children}
