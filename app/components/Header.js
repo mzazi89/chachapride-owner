@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import InstallBanner from './InstallBanner';
+import InstallAppButton from './InstallAppButton';
 
 export default function Header() {
   const router = useRouter();
@@ -64,6 +65,7 @@ export default function Header() {
             <span className="text-sm font-medium text-gray-700">
               Hi, {firstName}
             </span>
+            <InstallAppButton />
             <button
               onClick={handleLogout}
               className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-gray-700 transition-colors"
@@ -102,12 +104,15 @@ export default function Header() {
               <span className="text-sm font-medium text-gray-700">
                 Hi, {firstName}
               </span>
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-gray-700 transition-colors"
-              >
-                Log out
-              </button>
+              <div className="flex items-center gap-2">
+                <InstallAppButton />
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-gray-700 transition-colors"
+                >
+                  Log out
+                </button>
+              </div>
             </div>
           </div>
         )}
