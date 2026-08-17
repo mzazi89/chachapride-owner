@@ -43,7 +43,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundImage: `linear-gradient(rgba(248,250,252,0.92), rgba(240,249,255,0.94)), url(/images/hero-auth.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="w-full max-w-md">
         <div className="uber-card">
           <h1 className="text-3xl font-extrabold mb-1">Welcome back</h1>
