@@ -11,7 +11,7 @@ import {
 } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
-const fmt = (n) => `$${Number(n).toFixed(2)}`;
+import { fmtKsh as fmt } from '../../lib/format';
 
 const STATUS_PILL = {
   pending: 'bg-amber-50 text-amber-700 border-amber-200',

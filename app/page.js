@@ -131,11 +131,7 @@ export default function DashboardPage() {
 
   if (!user || user.role !== 'owner') return null; // redirecting
 
-  const fmtMoney = (n) =>
-    '$' + Number(n ?? 0).toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
+  const fmtMoney = (n) => fmtKsh(n);
 
   const cards = [
     { key: 'total_rides', icon: FaCar, label: 'Total rides', accent: 'bg-blue-100 text-blue-600' },
@@ -143,7 +139,7 @@ export default function DashboardPage() {
     { key: 'total_revenue', icon: FaDollarSign, label: 'Total revenue', accent: 'bg-emerald-100 text-emerald-600', fmt: fmtMoney },
     { key: 'active_rides', icon: FaRoute, label: 'Active rides', accent: 'bg-purple-100 text-purple-600' },
     { key: 'total_drivers', icon: FaUsers, label: 'Total drivers', accent: 'bg-blue-100 text-blue-600' },
-    { key: 'pending_commission', icon: FaMoneyBillWave, label: 'Pending commission', fmt: (v) => `$${Number(v).toFixed(2)}`, accent: 'bg-amber-100 text-amber-600' },
+    { key: 'pending_commission', icon: FaMoneyBillWave, label: 'Pending commission', fmt: (v) => fmtKsh(v), accent: 'bg-amber-100 text-amber-600' },
     { key: 'approved_drivers', icon: FaUserCheck, label: 'Approved drivers', accent: 'bg-indigo-100 text-indigo-600' },
     { key: 'online_drivers', icon: FaCircle, label: 'Online drivers', accent: 'bg-green-100 text-green-600' },
   ];
@@ -173,7 +169,7 @@ export default function DashboardPage() {
                 <rect x={x} y={y} width={barW} height={h} rx={6} className="fill-blue-600" />
                 {s.revenue > 0 && (
                   <text x={x + barW / 2} y={y - 6} textAnchor="middle" fontSize="11" className="fill-gray-500 font-semibold">
-                    ${Math.round(s.revenue)}
+                    KSh {Math.round(s.revenue)}
                   </text>
                 )}
                 <text x={x + barW / 2} y={height + 20} textAnchor="middle" fontSize="11" className="fill-gray-400">

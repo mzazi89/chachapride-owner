@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaSpinner } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
+import { fmtKsh } from '../../lib/format';
 import Header from '../components/Header';
 
 const STATUS_STYLES = {
@@ -158,7 +159,7 @@ export default function RidesPage() {
                         {ride.ride_type}
                       </td>
                       <td className="px-3 py-3 font-bold text-gray-900 whitespace-nowrap">
-                        ${Number(ride.price).toFixed(2)}
+                        {fmtKsh(ride.price)}
                       </td>
                       <td className="px-3 py-3 whitespace-nowrap">
                         <StatusPill status={ride.status} />

@@ -130,7 +130,7 @@ export default function RideTypesPage() {
           <div>
             <h1 className="text-3xl font-extrabold">Ride types</h1>
             <p className="text-gray-500 text-sm mt-1">
-              Fares are computed as base + per-km × distance. Inactive types are hidden from riders.
+              Fares: minimum KSh 50 (≤2 km), KSh 70 at 3 km, then KSh 30/km (per_km field; electric 25). Night fare ×2 from 10:30 PM–4:30 AM. Inactive types are hidden from riders.
             </p>
           </div>
           <button
@@ -266,8 +266,8 @@ export default function RideTypesPage() {
                       </p>
                       <p className="text-xs text-gray-400">{rt.description || rt.id}</p>
                     </td>
-                    <td className="px-4 py-4 text-gray-700">${Number(rt.base_price).toFixed(2)}</td>
-                    <td className="px-4 py-4 text-gray-700">${Number(rt.per_km).toFixed(2)}</td>
+                    <td className="px-4 py-4 text-gray-700">{fmtKsh(rt.base_price)}</td>
+                    <td className="px-4 py-4 text-gray-700">{fmtKsh(rt.per_km)}</td>
                     <td className="px-4 py-4 text-gray-700">{rt.capacity}</td>
                     <td className="px-4 py-4">
                       {rt.active ? (
