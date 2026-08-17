@@ -10,6 +10,7 @@ import {
   FaCheckCircle,
   FaExclamationTriangle,
 } from 'react-icons/fa';
+import { fmtKsh } from '../../lib/format';
 import { useAuth } from '../context/AuthContext';
 
 export default function RideTypesPage() {

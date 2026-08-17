@@ -16,6 +16,7 @@ import {
   FaMapMarkedAlt,
   FaArrowRight,
 } from 'react-icons/fa';
+import { fmtKsh } from '../lib/format';
 import { useAuth } from './context/AuthContext';
 import Header from './components/Header';
 
