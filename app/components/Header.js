@@ -22,6 +22,7 @@ export default function Header() {
     { href: '/settlements', label: 'Settlements' },
     { href: '/messages', label: 'Messages' },
     { href: '/ride-types', label: 'Ride types' },
+    { href: '/install', label: 'Install' },
   ];
 
   const isActive = (href) =>
