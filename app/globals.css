@@ -2,13 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --brand-blue: #2563eb;
+  --brand-green: #10b981;
+  --brand-purple: #8b5cf6;
+  --brand-gradient: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+  --brand-gradient-warm: linear-gradient(90deg, #2563eb 0%, #10b981 45%, #8b5cf6 100%);
+}
+
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;
   }
-  
+
   body {
-    @apply bg-gray-50;
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(139, 92, 246, 0.08), transparent 60%),
+      radial-gradient(1000px 600px at -10% 20%, rgba(37, 99, 235, 0.08), transparent 55%),
+      radial-gradient(900px 500px at 50% 110%, rgba(16, 185, 129, 0.08), transparent 60%),
+      #f8fafc;
   }
 }
 
@@ -16,22 +28,35 @@
   .uber-input {
     @apply w-full bg-gray-100 rounded-xl px-4 py-3 outline-none transition-all duration-200;
   }
-  
+
   .uber-input:focus {
-    @apply ring-2 ring-black bg-white;
+    @apply ring-2 ring-blue-500 bg-white;
   }
-  
+
   .uber-button {
-    @apply w-full bg-black text-white py-4 rounded-full font-bold text-lg 
-           hover:bg-gray-800 transition-all duration-200 transform hover:scale-[1.02];
+    @apply w-full text-white py-4 rounded-full font-bold text-lg
+           transition-all duration-200 transform hover:scale-[1.02];
+    background: var(--brand-gradient);
+    box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.5);
   }
-  
+
+  .uber-button:hover {
+    filter: brightness(1.08);
+  }
+
   .uber-card {
     @apply bg-white rounded-3xl shadow-xl p-8 transition-all duration-300;
   }
-  
+
   .uber-card:hover {
     @apply shadow-2xl;
+  }
+
+  .gradient-text {
+    background: var(--brand-gradient-warm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
 
@@ -45,10 +70,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #a5b4fc;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #818cf8;
 }

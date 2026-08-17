@@ -101,7 +101,7 @@ export default function RidesPage() {
               onClick={() => setFilter(f)}
               className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors ${
                 filter === f
-                  ? 'bg-blue-600 text-white'
+                  ? 'text-white bg-gradient-to-r from-blue-600 to-green-500'
                   : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
               }`}
             >

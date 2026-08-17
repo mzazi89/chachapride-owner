@@ -135,7 +135,7 @@ export default function RideTypesPage() {
           </div>
           <button
             onClick={startNew}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold transition bg-gradient-to-r from-blue-600 to-green-500 hover:brightness-110"
           >
             <FaPlus /> New ride type
           </button>
@@ -234,7 +234,7 @@ export default function RideTypesPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-white text-sm font-semibold transition bg-gradient-to-r from-blue-600 to-green-500 hover:brightness-110"
                 >
                   {saving ? <FaSpinner className="animate-spin" /> : <FaSave />}
                   Save ride type

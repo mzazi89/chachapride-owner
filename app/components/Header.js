@@ -37,7 +37,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <Link
             href="/"
-            className="text-xl font-black tracking-tight text-gray-900"
+            className="text-xl font-black tracking-tight gradient-text"
           >
             chacha<span className="text-blue-600">pride</span>
           </Link>
@@ -50,7 +50,7 @@ export default function Header() {
                 href={link.href}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
                   isActive(link.href)
-                    ? 'bg-blue-600 text-white'
+                    ? 'text-white bg-gradient-to-r from-blue-600 to-green-500'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               >
@@ -90,7 +90,7 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
                 className={`block px-4 py-2.5 rounded-xl text-sm font-semibold ${
                   isActive(link.href)
-                    ? 'bg-blue-600 text-white'
+                    ? 'text-white bg-gradient-to-r from-blue-600 to-green-500'
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >

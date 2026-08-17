@@ -11,7 +11,7 @@ export default function NotFound() {
         <p className="text-gray-500 mb-6">That report doesn&apos;t exist.</p>
         <Link
           href="/"
-          className="inline-block px-8 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+          className="inline-block px-8 py-3 rounded-full text-white font-semibold transition bg-gradient-to-r from-blue-600 to-green-500 hover:brightness-110"
         >
           Back to dashboard
         </Link>
