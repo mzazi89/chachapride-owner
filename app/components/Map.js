@@ -122,9 +122,12 @@ export default function Map({
       className="h-full w-full z-0"
     >
       <TileLayer
-        attribution='&copy; <a href="https://maps.google.com">Google</a>'
-        url="https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-        subdomains="mt0mt1mt2mt3"
+        attribution='&copy; <a href="https://www.esri.com">Esri</a>'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+      />
+      <TileLayer
+        attribution='&copy; <a href="https://www.esri.com">Esri</a>'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
       />
       {pickupCoords && (
         <Marker position={[pickupCoords.lat, pickupCoords.lng]} icon={pickupIcon} />
