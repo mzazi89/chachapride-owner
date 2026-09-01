@@ -67,7 +67,7 @@ export default function LiveMap({ rides }) {
     <div className="relative h-full w-full">
       <MapContainer
         center={center}
-        zoom={13}
+        zoom={15}
         scrollWheelZoom
         style={{ height: '100%', width: '100%', zIndex: 0 }}
       >
