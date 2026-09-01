@@ -7,19 +7,24 @@ import 'leaflet/dist/leaflet.css';
 const LAYERS = {
   streets: {
     name: 'Map',
-    // Esri World Street Map — continuously updated street + place names
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-    attribution: '&copy; <a href="https://www.esri.com">Esri</a>',
+    // Google roadmap — street + place names
+    url: 'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+    subdomains: 'mt0mt1mt2mt3',
+    attribution: '&copy; <a href="https://maps.google.com">Google</a>',
   },
   satellite: {
     name: 'Satellite',
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>',
+    // Google hybrid — satellite imagery with labels (names everywhere)
+    url: 'https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+    subdomains: 'mt0mt1mt2mt3',
+    attribution: '&copy; <a href="https://maps.google.com">Google</a>',
   },
   terrain: {
     name: 'Terrain',
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}',
-    attribution: 'Tiles &copy; <a href="https://www.esri.com">Esri</a>',
+    // Google terrain — with labels
+    url: 'https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+    subdomains: 'mt0mt1mt2mt3',
+    attribution: '&copy; <a href="https://maps.google.com">Google</a>',
   },
 };
 
@@ -55,7 +60,7 @@ export default function LiveMap({ rides }) {
     first && first.pickup_lat != null
       ? [first.pickup_lat, first.pickup_lng]
       : [-1.396, 36.7521];
-  const [layer, setLayer] = useState('streets');
+  const [layer, setLayer] = useState('satellite');
   const tile = LAYERS[layer];
 
   return (
@@ -66,7 +71,7 @@ export default function LiveMap({ rides }) {
         scrollWheelZoom
         style={{ height: '100%', width: '100%', zIndex: 0 }}
       >
-        <TileLayer attribution={tile.attribution} url={tile.url} />
+        <TileLayer attribution={tile.attribution} url={tile.url} subdomains={tile.subdomains} />
         {rides.map((ride) => (
           <Fragment key={ride.id}>
             {ride.pickup_lat != null && ride.pickup_lng != null && (
